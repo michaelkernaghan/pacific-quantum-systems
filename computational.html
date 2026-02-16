@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computational Quantum Foundations — Pacific Quantum Systems</title>
+  <meta name="description" content="Using computational methods — SAT solvers, graph algorithms, and algebraic search — to discover new results in quantum foundations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Pacific <span>Quantum</span> Systems</a>
+    <button class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')">&#9776;</button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="computational.html" class="active">Computation</a></li>
+      <li><a href="pqc.html">Post-Quantum Crypto</a></li>
+      <li><a href="quantum-comms.html">Quantum Comms</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>Computational Quantum Foundations</h1>
+  <p>Computers as instruments for foundational discovery in quantum mechanics</p>
+</div>
+
+<div class="content">
+
+  <h2>A New Kind of Instrument</h2>
+  <p>
+    Foundational quantum mechanics has traditionally been the domain of pen-and-paper
+    proof: thought experiments, algebraic manipulations, and elegant constructions by
+    hand. But many of the deepest questions in quantum foundations are fundamentally
+    combinatorial &mdash; they concern the existence or non-existence of structures
+    satisfying specific constraints across vast search spaces.
+  </p>
+  <p>
+    The computer is not replacing mathematical reasoning. It is extending it into
+    territory that is inaccessible to human intuition alone. Just as the telescope
+    revealed structure invisible to the naked eye, computational search reveals
+    mathematical structure that no amount of clever manipulation could have uncovered.
+  </p>
+
+  <div class="callout">
+    <p>
+      The discovery that the golden ratio field <code>&Zopf;[&phi;]</code> supports
+      Kochen-Specker sets was invisible to direct algebraic search. It emerged only
+      when a computer systematically applied cross-product closure to coordinate
+      sets &mdash; a process that generates hundreds of candidate vectors and tests
+      billions of combinations.
+    </p>
+  </div>
+
+  <h2>The Computational Toolkit</h2>
+  <p>
+    Our research draws on several families of algorithms, each suited to a different
+    aspect of the problem.
+  </p>
+
+  <h3>SAT Solvers for Uncolorability</h3>
+  <p>
+    The central question &mdash; can a set of quantum measurements be assigned
+    predetermined outcomes consistently? &mdash; is a constraint satisfaction
+    problem. We encode it as a Boolean satisfiability (SAT) instance:
+  </p>
+  <ul>
+    <li>Each vector gets a Boolean variable (included in the KS set or not)</li>
+    <li>Orthogonality constraints become clauses (exactly one vector per basis must be &ldquo;true&rdquo;)</li>
+    <li>KS-uncolorability means the formula is <strong>unsatisfiable</strong> &mdash; no consistent assignment exists</li>
+  </ul>
+  <p>
+    Modern CDCL solvers (we use Glucose4 via PySAT) can resolve these instances
+    in milliseconds for sets of 30&ndash;60 vectors, and provide <em>proofs</em>
+    of unsatisfiability &mdash; not just answers, but certificates that can be
+    independently verified.
+  </p>
+
+  <h3>Graph Algorithms</h3>
+  <p>
+    The orthogonality structure of a KS set defines a graph (vectors are vertices,
+    orthogonal pairs are edges) and a hypergraph (bases are hyperedges). These
+    structures encode the combinatorial skeleton of contextuality.
+  </p>
+  <ul>
+    <li><strong>Graph isomorphism (VF2):</strong> Testing whether KS sets from different algebraic rings share the same combinatorial structure</li>
+    <li><strong>Spectral analysis:</strong> Eigenvalues of the adjacency matrix reveal symmetry and regularity</li>
+    <li><strong>Lov&aacute;sz theta:</strong> A semidefinite programming bound that connects graph structure to quantum advantage &mdash; the ratio &theta;/&alpha; quantifies the contextual advantage</li>
+    <li><strong>Fractional chromatic number:</strong> Another graph invariant linked to the quantum-classical gap</li>
+  </ul>
+
+  <h3>Algebraic Search</h3>
+  <p>
+    Enumerating KS candidates requires generating vectors from algebraic number
+    fields and testing orthogonality. The search space grows combinatorially:
+  </p>
+  <ul>
+    <li><strong>Alphabet generation:</strong> For a ring like <code>&Zopf;[&radic;2]</code>, enumerate all vectors with coordinates of bounded norm</li>
+    <li><strong>Cross-product closure:</strong> Given a seed set, compute all cross products to discover vectors not in the original alphabet</li>
+    <li><strong>Greedy minimization:</strong> Starting from a large uncolorable pool, iteratively remove vectors while preserving uncolorability</li>
+    <li><strong>Exhaustive minimization:</strong> SAT-based approach that provably finds minimal KS subsets</li>
+  </ul>
+
+  <h3>Integer and Linear Programming</h3>
+  <p>
+    Bipartite perfect quantum strategies (BPQS) require finding optimal partitions
+    of KS bases into two sets satisfying coverage constraints. We use integer
+    linear programming to find exact solutions when they exist, and bound the
+    optimum otherwise.
+  </p>
+
+  <h2>What Computation Has Revealed</h2>
+  <p>
+    Several of our key results would have been difficult or impossible to obtain
+    without computational methods:
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Discovery</th>
+        <th>Method</th>
+        <th>Why Computation Was Essential</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Golden ratio KS set</td>
+        <td>Cross-product closure + SAT</td>
+        <td>Invisible to direct alphabet search; requires generating ~200 vectors and testing all subsets</td>
+      </tr>
+      <tr>
+        <td>Heegner-7 KS set</td>
+        <td>Algebraic search + SAT</td>
+        <td>Ring <code>&Zopf;[(1+&radic;-7)/2]</code> not previously considered; found by systematic survey across number fields</td>
+      </tr>
+      <tr>
+        <td>Graph universality of CK-31</td>
+        <td>VF2 isomorphism</td>
+        <td>Comparing graph structure across algebraically unrelated constructions requires exhaustive pairwise testing</td>
+      </tr>
+      <tr>
+        <td>6|n conjecture</td>
+        <td>Roots-of-unity survey</td>
+        <td>Testing all n-th roots of unity for n &le; 30 generates thousands of candidate sets</td>
+      </tr>
+      <tr>
+        <td>Realizability gap (49% vs 0%)</td>
+        <td>Random hypergraph generation + geometric embedding</td>
+        <td>Statistical claim requires sampling thousands of random structures</td>
+      </tr>
+      <tr>
+        <td>Norm-2 boundary</td>
+        <td>Systematic field survey</td>
+        <td>Negative results (no KS sets at norm &ge; 3) require exhaustive search to be convincing</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Reproducibility</h2>
+  <p>
+    Computational results in foundational physics must meet a high standard of
+    reproducibility. Our approach:
+  </p>
+  <ul>
+    <li><strong>Fixed random seeds:</strong> All stochastic processes use <code>random.seed(42)</code> for exact reproducibility</li>
+    <li><strong>Multiple verification paths:</strong> Key results confirmed by at least two independent algorithms (e.g., SAT + direct enumeration)</li>
+    <li><strong>Certificate-based proofs:</strong> SAT unsatisfiability provides machine-checkable certificates</li>
+    <li><strong>Open methodology:</strong> Complete algorithmic descriptions in publications, enabling independent replication</li>
+  </ul>
+
+  <h2>The Role of AI</h2>
+  <p>
+    Large language models are emerging as a new tool in computational research &mdash;
+    not for proof, but for <em>exploration</em>. In this work, AI assisted with:
+  </p>
+  <ul>
+    <li><strong>Literature synthesis:</strong> Connecting results across quantum foundations, graph theory, and algebraic number theory</li>
+    <li><strong>Code generation and debugging:</strong> Rapidly prototyping search algorithms and visualization tools</li>
+    <li><strong>Hypothesis generation:</strong> Suggesting algebraic structures to investigate based on pattern recognition</li>
+    <li><strong>Peer review simulation:</strong> Identifying weaknesses in arguments before formal submission</li>
+  </ul>
+  <p>
+    The key discipline is that AI suggestions are always verified computationally
+    or mathematically. The computer proposes; the mathematics disposes.
+  </p>
+
+  <div class="callout">
+    <p>
+      <strong>The computer as collaborator:</strong> The best results in computational
+      quantum foundations come from a tight loop between human mathematical intuition
+      (&ldquo;what structure might exist here?&rdquo;) and computational power
+      (&ldquo;let me check every possibility&rdquo;). Neither alone would have
+      found the golden ratio construction. Together, they did.
+    </p>
+  </div>
+
+  <h2>Software Stack</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Python 3.11</td><td>Primary language for all computational work</td></tr>
+      <tr><td>PySAT (Glucose4)</td><td>SAT solving for uncolorability and minimization</td></tr>
+      <tr><td>NumPy / SciPy</td><td>Linear algebra, eigenvalue computation, optimization</td></tr>
+      <tr><td>CVXPY (SCS solver)</td><td>Semidefinite programming for Lov&aacute;sz theta</td></tr>
+      <tr><td>NetworkX</td><td>Graph construction, isomorphism (VF2), spectral analysis</td></tr>
+      <tr><td>pdflatex (MiKTeX)</td><td>Paper compilation</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Pacific Quantum Systems &middot; Vancouver, BC</p>
+</footer>
+
+</body>
+</html>

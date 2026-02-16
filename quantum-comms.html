@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum Communications — Pacific Quantum Systems</title>
+  <meta name="description" content="Quantum key distribution, the Canadian quantum communications landscape, and building the classical-quantum software interface.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Pacific <span>Quantum</span> Systems</a>
+    <button class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')">&#9776;</button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="computational.html">Computation</a></li>
+      <li><a href="pqc.html">Post-Quantum Crypto</a></li>
+      <li><a href="quantum-comms.html" class="active">Quantum Comms</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>Quantum Communications</h1>
+  <p>Provably secure key distribution and the emerging quantum network infrastructure</p>
+</div>
+
+<div class="content">
+
+  <h2>Quantum Key Distribution</h2>
+  <p>
+    Quantum Key Distribution (QKD) uses the fundamental properties of quantum
+    mechanics to establish shared secret keys between two parties with
+    information-theoretic security. Unlike post-quantum cryptography (which relies
+    on computational hardness assumptions), QKD security is guaranteed by physics
+    itself: any eavesdropper necessarily disturbs the quantum states and is detected.
+  </p>
+
+  <h3>Major QKD Protocols</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Protocol</th>
+        <th>Year</th>
+        <th>Approach</th>
+        <th>Market Share</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>BB84</strong></td>
+        <td>1984</td>
+        <td>Prepare-and-measure, two conjugate bases</td>
+        <td>~80%</td>
+      </tr>
+      <tr>
+        <td><strong>E91</strong></td>
+        <td>1991</td>
+        <td>Entanglement-based, Bell inequality verification</td>
+        <td>Research</td>
+      </tr>
+      <tr>
+        <td><strong>CV-QKD</strong></td>
+        <td>2000s</td>
+        <td>Continuous-variable, coherent states</td>
+        <td>Growing</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p>
+      <strong>Key insight:</strong> QKD protocols use photonic hardware for quantum
+      state transmission, but classical software handles everything else &mdash;
+      authentication, error correction, privacy amplification, key management,
+      and network orchestration. The classical-quantum software interface is where
+      engineering meets physics.
+    </p>
+  </div>
+
+  <h2>The Canadian Quantum Landscape</h2>
+  <p>
+    Canada is positioning itself as a global leader in quantum communications
+    through a combination of government programs, private companies, and
+    university research groups.
+  </p>
+
+  <h3>Key Programs and Organizations</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Entity</th>
+        <th>Location</th>
+        <th>Focus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>NRC QUIN</strong></td>
+        <td>National</td>
+        <td>Quantum Internetworking Challenge program (2026&ndash;2033), building Canada's quantum network infrastructure</td>
+      </tr>
+      <tr>
+        <td><strong>Photonic Inc.</strong></td>
+        <td>Vancouver, BC</td>
+        <td>Silicon spin-photon qubits for distributed quantum computing; partnership with TELUS for commercial fiber networks</td>
+      </tr>
+      <tr>
+        <td><strong>TELUS</strong></td>
+        <td>Vancouver, BC</td>
+        <td>Commercial fiber infrastructure for quantum communications deployment</td>
+      </tr>
+      <tr>
+        <td><strong>SFU Q-Van Lab</strong></td>
+        <td>Burnaby, BC</td>
+        <td>Quantum Internet Systems Lab; Q-Van metropolitan testbed; QEYSSat satellite ground segment</td>
+      </tr>
+      <tr>
+        <td><strong>Xanadu</strong></td>
+        <td>Toronto, ON</td>
+        <td>Canada Quantum Network (CQN) testbed; photonic quantum computing</td>
+      </tr>
+      <tr>
+        <td><strong>QEYSSat</strong></td>
+        <td>National / Space</td>
+        <td>Canadian quantum communications satellite, launch expected late 2026</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>British Columbia Advantage</h2>
+  <p>
+    The Pacific Northwest offers a unique concentration of quantum communications
+    capabilities:
+  </p>
+  <ul>
+    <li><strong>Photonic Inc.</strong> &mdash; developing silicon-based quantum processors with native photonic interfaces ideal for networking</li>
+    <li><strong>TELUS partnership</strong> &mdash; commercial-grade fiber infrastructure already in place for QKD deployment</li>
+    <li><strong>SFU Q-Van testbed</strong> &mdash; metropolitan quantum network connecting campus locations</li>
+    <li><strong>QEYSSat ground segment</strong> &mdash; SFU hosts a ground station for Canada's quantum satellite</li>
+  </ul>
+
+  <h2>Standards and Interfaces</h2>
+  <p>
+    The classical-quantum interface is defined by emerging standards that enable
+    interoperability between QKD hardware from different vendors and integration
+    with existing network infrastructure.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Standard</th>
+        <th>Scope</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>ETSI QKD 014</code></td>
+        <td>RESTful API for QKD key delivery (JSON/HTTPS) &mdash; the primary software interface</td>
+      </tr>
+      <tr>
+        <td><code>ETSI QKD 004</code></td>
+        <td>Application interface for QKD key consumption</td>
+      </tr>
+      <tr>
+        <td><code>ITU-T Y.3800+</code></td>
+        <td>Quantum network architecture framework</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>From Theory to Infrastructure</h2>
+  <p>
+    Deploying quantum communications requires solving problems at every layer:
+  </p>
+  <ul>
+    <li><strong>Physical layer:</strong> Single-photon sources, detectors, and fiber/free-space channels</li>
+    <li><strong>Protocol layer:</strong> QKD protocol implementation, error correction, privacy amplification</li>
+    <li><strong>Key management:</strong> Storing, distributing, and rotating quantum-derived keys</li>
+    <li><strong>Network orchestration:</strong> SDN controllers for routing, trusted-node relay, and network topology management</li>
+    <li><strong>Application integration:</strong> Feeding QKD-derived keys into existing encryption systems (TLS, IPsec, VPNs)</li>
+  </ul>
+
+  <div class="callout">
+    <p>
+      <strong>NRC QUIN program</strong> (2026&ndash;2033) represents a $100M+ investment
+      in building Canada's quantum network infrastructure. The Expression of Interest
+      process opened in early 2026, with opportunities for testbed hosting,
+      classical-quantum integration, and application development.
+    </p>
+  </div>
+
+  <h2>Complementary Technologies</h2>
+  <p>
+    QKD and PQC are complementary, not competing:
+  </p>
+  <ul>
+    <li><strong>QKD</strong> provides information-theoretic security for key exchange over dedicated channels</li>
+    <li><strong>PQC</strong> provides computational security that works over any network without specialized hardware</li>
+    <li>Future networks will likely use <strong>both</strong>: QKD for high-security links, PQC for general-purpose encryption</li>
+  </ul>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Pacific Quantum Systems &middot; Vancouver, BC</p>
+</footer>
+
+</body>
+</html>

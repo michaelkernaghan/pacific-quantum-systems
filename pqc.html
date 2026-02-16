@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post-Quantum Cryptography — Pacific Quantum Systems</title>
+  <meta name="description" content="Post-quantum cryptography: lattice-based algorithms, NIST standards, and blockchain integration for quantum-resistant infrastructure.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Pacific <span>Quantum</span> Systems</a>
+    <button class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')">&#9776;</button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="computational.html">Computation</a></li>
+      <li><a href="pqc.html" class="active">Post-Quantum Crypto</a></li>
+      <li><a href="quantum-comms.html">Quantum Comms</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>Post-Quantum Cryptography</h1>
+  <p>Preparing cryptographic infrastructure for the quantum era</p>
+</div>
+
+<div class="content">
+
+  <h2>The Quantum Threat</h2>
+  <p>
+    Shor's algorithm, running on a sufficiently large quantum computer, can factor
+    integers and compute discrete logarithms in polynomial time. This breaks RSA,
+    ECDSA, and every widely-deployed public-key cryptosystem. Grover's algorithm
+    provides a quadratic speedup for brute-force search, effectively halving
+    symmetric key lengths.
+  </p>
+  <p>
+    The timeline is uncertain, but the threat is not: &ldquo;harvest now, decrypt
+    later&rdquo; attacks mean that data encrypted today with vulnerable algorithms
+    may already be at risk.
+  </p>
+
+  <h2>NIST Post-Quantum Standards</h2>
+  <p>
+    In 2024, NIST finalized three post-quantum cryptographic standards after an
+    eight-year evaluation process. These algorithms are built on mathematical
+    problems believed to be hard for both classical and quantum computers.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Standard</th>
+        <th>Algorithm</th>
+        <th>Type</th>
+        <th>Hard Problem</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>FIPS 204</code></td>
+        <td>ML-DSA (Dilithium)</td>
+        <td>Digital Signature</td>
+        <td>Module-LWE</td>
+      </tr>
+      <tr>
+        <td><code>FIPS 203</code></td>
+        <td>ML-KEM (Kyber)</td>
+        <td>Key Encapsulation</td>
+        <td>Module-LWE</td>
+      </tr>
+      <tr>
+        <td><code>FIPS 205</code></td>
+        <td>SLH-DSA (SPHINCS+)</td>
+        <td>Digital Signature</td>
+        <td>Hash functions</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Lattice-Based Cryptography</h2>
+  <p>
+    The dominant approach to post-quantum cryptography is built on lattice problems.
+    A <em>lattice</em> is a regular grid of points in high-dimensional space. Two
+    problems form the security foundation:
+  </p>
+  <ul>
+    <li>
+      <strong>Learning With Errors (LWE):</strong> Given a system of approximate
+      linear equations over a finite field, recover the secret vector. The &ldquo;errors&rdquo;
+      (small noise terms) make this problem exponentially hard in the lattice dimension.
+    </li>
+    <li>
+      <strong>Shortest Vector Problem (SVP):</strong> Find the shortest nonzero
+      vector in a lattice. No known quantum algorithm provides better than marginal
+      improvement over classical approaches.
+    </li>
+  </ul>
+
+  <div class="callout">
+    <p>
+      ML-DSA-44 (the smallest parameter set) produces signatures of 2,420 bytes
+      with public keys of 1,312 bytes &mdash; significantly larger than ECDSA's
+      64-byte signatures and 33-byte keys. This size increase is the primary
+      engineering challenge for adoption.
+    </p>
+  </div>
+
+  <h2>Blockchain Integration: Tezos tz5 Addresses</h2>
+  <p>
+    Blockchain systems face an acute PQC challenge: addresses are derived directly
+    from public keys, and transactions are authenticated by digital signatures.
+    Every on-chain asset is ultimately protected by the signature scheme.
+  </p>
+  <p>
+    Tezos is actively developing <strong>tz5 addresses</strong> based on ML-DSA
+    (Dilithium) for quantum-resistant account security. Key developments:
+  </p>
+  <ul>
+    <li>New <code>tz5</code> address prefix for ML-DSA-44 public keys</li>
+    <li>Larger transaction sizes due to PQC signature overhead</li>
+    <li>Initial restrictions: tz5 accounts may have limited smart contract interaction</li>
+    <li>Protocol-level changes required for consensus participation</li>
+  </ul>
+  <p>
+    We track tz5 development through the Tezos GitLab, monitoring merge requests,
+    protocol proposals, and test network deployments.
+  </p>
+
+  <h2>Current Address Types in Tezos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Prefix</th>
+        <th>Curve / Algorithm</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>tz1</code></td><td>Ed25519</td><td>Active (most common)</td></tr>
+      <tr><td><code>tz2</code></td><td>secp256k1</td><td>Active</td></tr>
+      <tr><td><code>tz3</code></td><td>P-256 (NIST)</td><td>Active</td></tr>
+      <tr><td><code>tz4</code></td><td>BLS12-381</td><td>Active (consensus)</td></tr>
+      <tr><td><code>tz5</code></td><td>ML-DSA-44 (Dilithium)</td><td>In development</td></tr>
+    </tbody>
+  </table>
+
+  <h2>The Transition Challenge</h2>
+  <p>
+    Migrating to post-quantum cryptography is not a simple algorithm swap.
+    It requires:
+  </p>
+  <ul>
+    <li><strong>Hybrid schemes:</strong> Running classical and PQC algorithms in parallel during the transition period</li>
+    <li><strong>Key management:</strong> PQC keys are 10-50x larger, impacting storage and bandwidth</li>
+    <li><strong>Performance testing:</strong> Signature generation and verification times differ significantly from classical algorithms</li>
+    <li><strong>Protocol updates:</strong> Consensus mechanisms, smart contracts, and wallet software all need adaptation</li>
+  </ul>
+
+  <h2>Key Resources</h2>
+  <ul>
+    <li>NIST Post-Quantum Cryptography project</li>
+    <li>Open Quantum Safe &mdash; open-source PQC implementations (liboqs)</li>
+    <li>Tezos Improvement Proposals for tz5</li>
+    <li>ETSI Quantum-Safe Cryptography working group</li>
+  </ul>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Pacific Quantum Systems &middot; Vancouver, BC</p>
+</footer>
+
+</body>
+</html>

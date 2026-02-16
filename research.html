@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research — Pacific Quantum Systems</title>
+  <meta name="description" content="Quantum contextuality research: algebraic classification of Kochen-Specker sets, the norm-2 boundary, and connections to quantum advantage.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Pacific <span>Quantum</span> Systems</a>
+    <button class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')">&#9776;</button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="research.html" class="active">Research</a></li>
+      <li><a href="computational.html">Computation</a></li>
+      <li><a href="pqc.html">Post-Quantum Crypto</a></li>
+      <li><a href="quantum-comms.html">Quantum Comms</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>Quantum Contextuality Research</h1>
+  <p>Algebraic structures underlying quantum mechanics and the Kochen-Specker theorem</p>
+</div>
+
+<div class="content">
+
+  <h2>The Algebraic Landscape of Kochen-Specker Sets</h2>
+  <p>
+    The Kochen-Specker (KS) theorem is one of the foundational results in quantum
+    mechanics. It proves that quantum measurement outcomes cannot be predetermined
+    independently of which other compatible measurements are performed &mdash; a
+    property called <em>contextuality</em>.
+  </p>
+  <p>
+    Our research asks a new question: <strong>what algebraic invariant controls
+    whether a set of quantum measurements exhibits contextuality?</strong>
+  </p>
+
+  <div class="callout">
+    <p>
+      <strong>Central thesis:</strong> Generator norm &le; 2 is the controlling
+      invariant for KS-uncolorability in dimension three. The integer identity
+      1+1=2, the Peres identity (&radic;2)&sup2;=2, and the Eisenstein identity
+      1+&omega;+&omega;&sup2;=0 are all manifestations of the same algebraic
+      constraint.
+    </p>
+  </div>
+
+  <h2>Six Constructions from Algebraic Rings</h2>
+  <p>
+    A systematic computational survey across algebraic number fields reveals that
+    KS-uncolorable sets in dimension three arise from exactly six algebraic rings
+    &mdash; discrete constructions separated by algebraic structure rather than
+    continuous parameters.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Construction</th>
+        <th>Ring</th>
+        <th>Min KS Size</th>
+        <th>Cancellation Identity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Integer (Conway-Kochen)</td>
+        <td><code>&Zopf;</code></td>
+        <td>31</td>
+        <td>1 + 1 = 2</td>
+      </tr>
+      <tr>
+        <td>Peres</td>
+        <td><code>&Zopf;[&radic;2]</code></td>
+        <td>33</td>
+        <td>(&radic;2)&sup2; = 2</td>
+      </tr>
+      <tr>
+        <td>Eisenstein</td>
+        <td><code>&Zopf;[&omega;]</code></td>
+        <td>33</td>
+        <td>1 + &omega; + &omega;&sup2; = 0</td>
+      </tr>
+      <tr>
+        <td>&Zopf;[&radic;-2]</td>
+        <td><code>&Zopf;[&radic;-2]</code></td>
+        <td>33</td>
+        <td>|&radic;-2|&sup2; = 2</td>
+      </tr>
+      <tr>
+        <td>Heegner-7</td>
+        <td><code>&Zopf;[(1+&radic;-7)/2]</code></td>
+        <td>43</td>
+        <td>&alpha;&middot;&alpha;&#x0305; = 2</td>
+      </tr>
+      <tr>
+        <td>Golden</td>
+        <td><code>&Zopf;[&phi;]</code></td>
+        <td>52</td>
+        <td>&phi;&sup2; = &phi; + 1</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    The Heegner-7 and Golden constructions are newly discovered &mdash; they do not
+    appear in any existing KS catalogue. The Golden construction is particularly
+    remarkable: invisible to direct alphabet search, it emerges only through
+    cross-product completion of the coordinate set.
+  </p>
+
+  <h2>Graph Universality</h2>
+  <p>
+    A striking structural result: all known 31-vertex KS sets &mdash; whether constructed
+    from integer coordinates, rational fields, mixed-field alphabets, or group-theoretic
+    orbits (A<sub>4</sub>, S<sub>4</sub>) &mdash; are graph-isomorphic. The
+    orthogonality graph appears to be a universal invariant at the minimum size.
+  </p>
+
+  <h2>Connection to Quantum Advantage</h2>
+  <p>
+    Every KS set defines a <em>bipartite perfect quantum strategy</em> (BPQS) &mdash;
+    a nonlocal game where quantum players achieve perfect coordination that is
+    impossible classically. The algebraic structure of the KS set directly determines
+    the size and efficiency of the resulting quantum advantage.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Construction</th>
+        <th>|S<sub>A</sub>| &times; |S<sub>B</sub>|</th>
+        <th>Product</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Eisenstein-33</td><td>5 &times; 9</td><td>45</td><td>Exact</td></tr>
+      <tr><td>Peres-33</td><td>7 &times; 9</td><td>63</td><td>Exact</td></tr>
+      <tr><td>Conway-Kochen-31</td><td>8 &times; 9</td><td>&le;72</td><td>Best found</td></tr>
+      <tr><td>&Zopf;[&radic;-2]-33</td><td>7 &times; 9</td><td>63</td><td>Exact (new)</td></tr>
+      <tr><td>Heegner-7-43</td><td>9 &times; 12</td><td>&le;108</td><td>Best found (new)</td></tr>
+      <tr><td>Golden-52</td><td>12 &times; 13</td><td>&le;156</td><td>Best found (new)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Key Results</h2>
+  <ul>
+    <li><strong>6|n Conjecture:</strong> n-th roots of unity produce KS-uncolorable sets if and only if 6 divides n (verified for n &le; 30)</li>
+    <li><strong>Realizability gap:</strong> 49% of random abstract hypergraphs are KS-uncolorable, but 0% are realizable in &Ropf;&sup3; &mdash; geometric embedding is the true bottleneck</li>
+    <li><strong>Fragility:</strong> The Conway-Kochen 31-vector set is destroyed by 1% coordinate perturbation, confirming the discrete algebraic nature of KS contextuality</li>
+    <li><strong>Norm-2 boundary:</strong> At generator norm &ge; 3, the cancellation identities required for orthogonality become impossible</li>
+  </ul>
+
+  <h2>Historical Context</h2>
+  <p>
+    The study of finite KS sets has a rich history stretching from the original
+    Kochen-Specker theorem (1967) through the Peres 33-vector construction (1991),
+    the Kernaghan 20-vector set in four dimensions (1994), the Kernaghan-Peres
+    40-vector construction connecting to GHZ paradoxes (1995), and the Cabello
+    18-vector minimal set in four dimensions (1996). Our work extends this tradition
+    into the algebraic domain, classifying for the first time which number fields
+    support contextuality in the smallest nontrivial dimension.
+  </p>
+
+  <h2>Publications</h2>
+  <ul>
+    <li>
+      M. Kernaghan, &ldquo;The Algebraic Landscape of Kochen-Specker Sets in
+      Dimension Three&rdquo; (2026). <em>In preparation for Physical Review A.</em>
+    </li>
+    <li>
+      M. Kernaghan, &ldquo;New KS Sets from Algebraic Number Fields with Enhanced
+      Contextual Advantage&rdquo; (2026). <em>In preparation for Physical Review Letters.</em>
+    </li>
+    <li>
+      M. Kernaghan, &ldquo;Graph Universality of CK-31 and the Norm-2 Boundary&rdquo;
+      (2026). <em>In preparation for Physical Review Letters.</em>
+    </li>
+  </ul>
+
+  <h3>Earlier Publications</h3>
+  <ul>
+    <li>M. Kernaghan, &ldquo;Bell-Kochen-Specker theorem for 20 vectors,&rdquo; <em>J. Phys. A</em> <strong>27</strong>, L829 (1994).</li>
+    <li>M. Kernaghan and A. Peres, &ldquo;Kochen-Specker theorem for eight-dimensional space,&rdquo; <em>Phys. Lett. A</em> <strong>198</strong>, 1&ndash;5 (1995).</li>
+  </ul>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Pacific Quantum Systems &middot; Vancouver, BC</p>
+</footer>
+
+</body>
+</html>
