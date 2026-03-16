@@ -1,6 +1,6 @@
 # Pacific Quantum Systems
 
-Research initiative based in Vancouver, BC, exploring the mathematical foundations of quantum mechanics and their implications for cryptography and secure communications.
+Research initiative based in Vancouver, BC, investigating the mathematical foundations of quantum mechanics and the questions they raise about physical reality.
 
 **Website:** [pacific-quantum-systems.com](https://pacific-quantum-systems.com/)
 
